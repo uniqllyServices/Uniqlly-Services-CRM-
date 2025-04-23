@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uniqlly Services CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #f3f4f6;
+      color: #111827;
+    }
+    header {
+      background-color: #4f46e5;
+      padding: 1rem 2rem;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    nav a {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background: #6366f1;
+      color: white;
+      border-radius: 0.5rem;
+    }
+    section {
+      padding: 2rem;
+    }
+    .container {
+      background: white;
+      margin: 1rem auto;
+      max-width: 800px;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #4f46e5;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      font-weight: 600;
+    }
+    input, select, button {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+    }
+    button {
+      background-color: #4f46e5;
+      color: white;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e5e7eb;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Uniqlly Services CRM System</h1>
+    <p>Powered by Uniqlly Services</p>
+  </header>
+  <nav>
+    <a href="#login">Login</a>
+    <a href="#admin">Admin Access</a>
+    <a href="#features">CRM Features</a>
+  </nav>
+
+  <section class="container" id="login">
+    <h2>Login Page</h2>
+    <form onsubmit="return loginUser(event)">
+      <label for="role">Select Role</label>
+      <select id="role" name="role">
+        <option value="customer">Customer</option>
+        <option value="employee">Employee</option>
+        <option value="admin">Admin</option>
+      </select>
+      <label for="uuid">UUID</label>
+      <input type="text" id="uuid" name="uuid" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <section class="container" id="admin">
+    <h2>Admin Access</h2>
+    <form onsubmit="return createUser(event)">
+      <label for="new-role">Role</label>
+      <select id="new-role" name="new-role">
+        <option value="customer">Customer</option>
+        <option value="employee">Employee</option>
+      </select>
+      <label for="new-uuid">Generate UUID</label>
+      <input type="text" id="new-uuid" name="new-uuid" value="UUID_" />
+      <label for="new-password">Password</label>
+      <input type="password" id="new-password" name="new-password" />
+      <button type="submit">Create User</button>
+    </form>
+  </section>
+
+  <section class="container" id="features">
+    <h2>CRM Features</h2>
+    <ul>
+      <li>Customer Data Management</li>
+      <li>Sales Tracking and Analytics</li>
+      <li>Marketing Campaigns</li>
+      <li>Communication Tools (including Call feature)</li>
+      <li>Lead Management</li>
+      <li>Task Management</li>
+      <li>Access Control by Role and User ID</li>
+      <li>Performance Dashboards</li>
+      <li>Data Export and Reports</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Uniqlly Services. All rights reserved.
+  </footer>
+
+  <script>
+    function loginUser(event) {
+      event.preventDefault();
+      const role = document.getElementById('role').value;
+      const uuid = document.getElementById('uuid').value;
+      const password = document.getElementById('password').value;
+      alert(`${role.toUpperCase()} logged in with UUID: ${uuid}`);
+    }
+
+    function createUser(event) {
+      event.preventDefault();
+      const role = document.getElementById('new-role').value;
+      const uuid = document.getElementById('new-uuid').value;
+      const password = document.getElementById('new-password').value;
+      alert(`New ${role.toUpperCase()} created: UUID=${uuid}, Password=${password}`);
+    }
+  </script>
+</body>
+</html>
