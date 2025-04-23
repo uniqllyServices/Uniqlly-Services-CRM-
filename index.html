@@ -107,6 +107,7 @@
       <input type="password" id="password" name="password" required />
       <button type="submit">Login</button>
     </form>
+    <p id="login-message"></p>
   </section>
 
   <section class="container" id="admin">
@@ -123,6 +124,7 @@
       <input type="password" id="new-password" name="new-password" />
       <button type="submit">Create User</button>
     </form>
+    <p id="create-message"></p>
   </section>
 
   <section class="container" id="features">
@@ -145,12 +147,27 @@
   </footer>
 
   <script>
+    // In-memory fake user database
+    const users = {
+      admin: { uuid: 'admin123', password: 'admin@123' },
+      employee: { uuid: 'emp001', password: 'emp@2025' },
+      customer: { uuid: 'cust001', password: 'cust@2025' }
+    };
+
     function loginUser(event) {
       event.preventDefault();
       const role = document.getElementById('role').value;
       const uuid = document.getElementById('uuid').value;
       const password = document.getElementById('password').value;
-      alert(`${role.toUpperCase()} logged in with UUID: ${uuid}`);
+      const message = document.getElementById('login-message');
+
+      if (users[role] && users[role].uuid === uuid && users[role].password === password) {
+        message.style.color = 'green';
+        message.textContent = `${role.toUpperCase()} login successful!`;
+      } else {
+        message.style.color = 'red';
+        message.textContent = 'Invalid UUID or password.';
+      }
     }
 
     function createUser(event) {
@@ -158,7 +175,17 @@
       const role = document.getElementById('new-role').value;
       const uuid = document.getElementById('new-uuid').value;
       const password = document.getElementById('new-password').value;
-      alert(`New ${role.toUpperCase()} created: UUID=${uuid}, Password=${password}`);
+      const message = document.getElementById('create-message');
+
+      if (!uuid || !password) {
+        message.style.color = 'red';
+        message.textContent = 'UUID and Password cannot be empty.';
+        return;
+      }
+
+      users[role] = { uuid, password };
+      message.style.color = 'green';
+      message.textContent = `${role.toUpperCase()} created successfully.`;
     }
   </script>
 </body>
